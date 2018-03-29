@@ -1,6 +1,6 @@
 Name:           zerotier-one
-Version:        1.2.4
-Release:        1%{?dist}
+Version:        1.2.5
+Release:        2%{?dist}
 Summary:        ZeroTier One network virtualization service
 
 License:        GPLv3
@@ -68,6 +68,7 @@ containers (Docker, OpenVZ, etc.).
 rm -rf $RPM_BUILD_ROOT
 pushd %{getenv:PWD}
 make install DESTDIR=$RPM_BUILD_ROOT
+cp /root/planet $RPM_BUILD_ROOT/var/lib/zerotier-one/planet
 popd
 %if 0%{?rhel} >= 7
 mkdir -p $RPM_BUILD_ROOT%{_unitdir}
