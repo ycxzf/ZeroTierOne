@@ -103,6 +103,7 @@ struct InetAddress : public sockaddr_storage
 	InetAddress(const struct sockaddr_in6 *sa) { *this = sa; }
 	InetAddress(const void *ipBytes,unsigned int ipLen,unsigned int port) { this->set(ipBytes,ipLen,port); }
 	InetAddress(const uint32_t ipv4,unsigned int port) { this->set(&ipv4,4,port); }
+	InetAddress(const uint8_t a,const uint8_t b,const uint8_t c,const uint8_t d,const unsigned int port) { uint8_t tmp[4] = { a,b,c,d }; this->set(tmp,4,port); }
 	InetAddress(const char *ipSlashPort) { this->fromString(ipSlashPort); }
 
 	inline InetAddress &operator=(const InetAddress &a)

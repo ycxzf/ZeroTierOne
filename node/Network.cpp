@@ -1174,6 +1174,45 @@ void Network::requestConfiguration(void *tPtr)
 			if (networkHub != 0)
 				nconf->specialists[0] = networkHub;
 
+			// TEMPORARY HACK: static routes for Oceus/LTE demo in April 2018
+			// Parahawk
+			nconf->routeCount = 7;
+			nconf->routes[0].target = InetAddress("10.244.8.0/24");
+			nconf->routes[0].via = InetAddress("44.212.155.231");
+			nconf->routes[0].flags = 0;
+			nconf->routes[0].metric = 0;
+			// CTOC
+			nconf->routes[1].target = InetAddress("10.253.8.0/24");
+			nconf->routes[1].via = InetAddress("44.30.24.107");
+			nconf->routes[1].flags = 0;
+			nconf->routes[1].metric = 0;
+			// Squad1 / 542fa59a1b
+			nconf->routes[2].target = InetAddress("10.241.8.0/24");
+			nconf->routes[2].via = InetAddress((uint8_t)((_id >> 48) & 0xff),(uint8_t)((0x542fa59a1bULL >> 16) & 0xff),(uint8_t)((0x542fa59a1bULL >> 8) & 0xff),(uint8_t)(0x542fa59a1bULL & 0xff),32);
+			nconf->routes[2].flags = 0;
+			nconf->routes[2].metric = 0;
+			// Squad2 / ccbfbc9249
+			nconf->routes[3].target = InetAddress("10.242.8.0/24");
+			nconf->routes[3].via = InetAddress((uint8_t)((_id >> 48) & 0xff),(uint8_t)((0xccbfbc9249ULL >> 16) & 0xff),(uint8_t)((0xccbfbc9249ULL >> 8) & 0xff),(uint8_t)(0xccbfbc9249ULL & 0xff),32);
+			nconf->routes[3].flags = 0;
+			nconf->routes[3].metric = 0;
+			// Squad3 / e4a498f7b3
+			nconf->routes[4].target = InetAddress("10.245.8.0/24");
+			nconf->routes[4].via = InetAddress((uint8_t)((_id >> 48) & 0xff),(uint8_t)((0xe4a498f7b3ULL >> 16) & 0xff),(uint8_t)((0xe4a498f7b3ULL >> 8) & 0xff),(uint8_t)(0xe4a498f7b3ULL & 0xff),32);
+			nconf->routes[4].flags = 0;
+			nconf->routes[4].metric = 0;
+			// BTOC / 981a34a004
+			nconf->routes[5].target = InetAddress("10.254.8.0/24");
+			nconf->routes[5].via = InetAddress((uint8_t)((_id >> 48) & 0xff),(uint8_t)((0x981a34a004ULL >> 16) & 0xff),(uint8_t)((0x981a34a004ULL >> 8) & 0xff),(uint8_t)(0x981a34a004ULL & 0xff),32);
+			nconf->routes[5].flags = 0;
+			nconf->routes[5].metric = 0;
+			// Tigershark / 2036f4f7be
+			nconf->routes[6].target = InetAddress("10.243.8.0/24");
+			nconf->routes[6].via = InetAddress((uint8_t)((_id >> 48) & 0xff),(uint8_t)((0x2036f4f7beULL >> 16) & 0xff),(uint8_t)((0x2036f4f7beULL >> 8) & 0xff),(uint8_t)(0x2036f4f7beULL & 0xff),32);
+			nconf->routes[6].flags = 0;
+			nconf->routes[6].metric = 0;
+			// END TEMPORARY HACK
+
 			nconf->staticIps[0] = InetAddress::makeIpv66plane(_id,myAddress);
 			nconf->staticIps[1].set(ipv4,4,8);
 
